@@ -2,7 +2,7 @@
 
 ## Preview
 
-![Preview](https://github.com/fiskirton/phonebook.github.io/blob/master/book.gif)
+<img src="https://fiskirton.github.io/Phone-book/res/book.gif"/>
 
 ## Installing
 ### Dependencies
