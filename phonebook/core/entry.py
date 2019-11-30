@@ -63,7 +63,7 @@ def check_all_fields(params):
 
 
 def check_int(value):
-    return int(value) if value.strip.isdigit() else messages.ERROR_MSG['N']
+    return int(value) if value.strip().isdigit() else messages.ERROR_MSG['N']
 
 
 def check_sign(value):
