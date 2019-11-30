@@ -21,7 +21,6 @@ class MainForm(npyscreen.FormBaseNew):
         self.add(HelpLineBox, rely=y - 5, max_height=3)
 
     def beforeEditing(self):
-        npyscreen.notify_confirm(message=self.find_parent_app().book.database_name)
         self.records_list.update_list()
 
     def close_app(self, *args, **keywords):
