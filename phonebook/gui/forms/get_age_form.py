@@ -5,6 +5,11 @@ from phonebook.gui.forms import deletion_key_form
 
 
 class GetAgeForm(deletion_key_form.DeletionKeyForm):
+    def create(self):
+
+        self.name = 'Get age'
+        self.wgName = self.add(npyscreen.TitleText, name="Name:")
+        self.wgSurname = self.add(npyscreen.TitleText, name="Surname:")
 
     def on_ok(self):
 
