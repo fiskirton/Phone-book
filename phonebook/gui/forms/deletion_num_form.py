@@ -24,7 +24,7 @@ class DeletionNumForm(multiline_form.MultilineForm):
             self.func_res_msg = messages.ACTION_RES_MSG['nf']
 
         elif len(result) == 1:
-            answer = notifications.spawn_notify_confirmation('DELETE')
+            answer = notifications.spawn_notify_confirmation('DELETE THE RECORD')
             if answer:
                 self.find_parent_app().book.delete_record(phone=phone, contact_id=result[0][0])
                 self.func_res_msg = messages.ACTION_RES_MSG['ok']

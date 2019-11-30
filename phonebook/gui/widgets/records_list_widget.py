@@ -21,7 +21,7 @@ class RecordsList(npyscreen.GridColTitles):
     def delete_record_listener(self, *args, **keywords):
         if self.values:
             selected = self.selected_row()
-            answer = notifications.spawn_notify_confirmation("DELETE")
+            answer = notifications.spawn_notify_confirmation("DELETE THE RECORD")
             if answer:
                 self.find_parent_app().book.delete_record(name=selected[0], surname=selected[1])
                 self.update_list()

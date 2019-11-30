@@ -7,7 +7,7 @@ def spawn_warning_incorrect_input(errors):
 
 
 def spawn_notify_confirmation(action_name):
-    message = 'Are you sure you want to {} the record?(Press TAB to make choice)'.format(action_name)
+    message = 'Are you sure you want to {}?(Press TAB to make choice)'.format(action_name)
     title = " ".join(('Confirm ', action_name))
     answer = npyscreen.notify_yes_no(message, title=title)
     return answer

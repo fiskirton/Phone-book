@@ -18,7 +18,7 @@ class EditRecordForm(multiline_form.MultilineForm):
 
         record = [self.wgName.value, self.wgSurname.value, self.wgPhone.value, self.wgBirthday.value]
 
-        answer = notifications.spawn_notify_confirmation("EDIT")
+        answer = notifications.spawn_notify_confirmation("EDIT THE RECORD")
 
         if answer:
             self.func_res_msg = self.parentApp.book.add_edit_record(record, self.record_id)

@@ -74,7 +74,8 @@ class RecordsManager:
     def get_all_records(self):
         db = sqlite3.connect(self.database_name)
         cursor = db.cursor()
-        cursor.execute('SELECT Name, Surname, Phone, strftime("%d-%m-%Y", Birthday) FROM records')
+        cursor.execute('SELECT Name, Surname, Phone, strftime("%d-%m-%Y", Birthday) '
+                       'FROM records ORDER BY Name, Surname ')
         records = cursor.fetchall()
         cursor.close()
         return records
@@ -96,7 +97,8 @@ class RecordsManager:
 
             elif phone:
                 cursor.execute('SELECT Contact_id, Name, Surname, Phone, Birthday FROM records '
-                               'WHERE Phone = ?', [phone])
+                               'WHERE Phone = ? '
+                               'ORDER BY Name, Surname', [phone])
                 record = cursor.fetchall()
         except sqlite3.DatabaseError:
             db_message = messages.DB_MSG['fail']
@@ -140,7 +142,7 @@ class RecordsManager:
             message = messages.DB_MSG['empty']
             return message
         else:
-            query = body + " AND ".join(fields)
+            query = body + " AND ".join(fields) + ' ORDER By Name, Surname'
             return query
 
     def get_near_birthdays(self):
@@ -152,7 +154,8 @@ class RecordsManager:
                            'FROM records '
                            'WHERE strftime("%m-%d", Birthday) '
                            'BETWEEN strftime("%m-%d", "now") '
-                           'AND strftime("%m-%d", "now", "+30 day")')
+                           'AND strftime("%m-%d", "now", "+30 day") '
+                           'ORDER BY Name, Surname')
         except sqlite3.DatabaseError:
             db_message = messages.DB_MSG['fail']
             return db_message
@@ -178,7 +181,8 @@ class RecordsManager:
         try:
             cursor.execute('SELECT Name, Surname, Phone, strftime("%d-%m-%Y",Birthday) '
                            'FROM records '
-                           'WHERE Birthday != ""')
+                           'WHERE Birthday != "" '
+                           'ORDER BY Name, Surname')
         except sqlite3.DatabaseError:
             db_message = messages.DB_MSG['fail']
             return db_message
@@ -193,3 +197,16 @@ class RecordsManager:
             cursor.close()
             return (messages.DB_MSG['ok'], records_to_display) if len(records_to_display)\
                 else (messages.DB_MSG['nf'], records_to_display)
+
+    def delete_all(self):
+        db = sqlite3.connect(self.database_name)
+        cursor = db.cursor()
+
+        try:
+            cursor.execute('DELETE FROM records')
+        except sqlite3.DatabaseError:
+            db_message = messages.DB_MSG['fail']
+            return db_message
+        else:
+            db.commit()
+            cursor.close()

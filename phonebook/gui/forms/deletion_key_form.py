@@ -25,7 +25,7 @@ class DeletionKeyForm(multiline_form.MultilineForm):
         if not result:
             self.func_res_msg = messages.ACTION_RES_MSG['nf']
         else:
-            answer = notifications.spawn_notify_confirmation('DELETE')
+            answer = notifications.spawn_notify_confirmation('DELETE THE RECORD')
             if answer:
                 self.find_parent_app().book.delete_record(name=name, surname=surname)
                 self.func_res_msg = messages.ACTION_RES_MSG['ok']

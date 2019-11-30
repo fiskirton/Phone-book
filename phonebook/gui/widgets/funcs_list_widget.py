@@ -1,6 +1,6 @@
 import npyscreen
 import curses
-from phonebook.extra import messages
+from phonebook.extra import messages, notifications
 
 
 class FuncMenu(npyscreen.MultiLineAction):
@@ -17,7 +17,8 @@ class FuncMenu(npyscreen.MultiLineAction):
             'Delete(number)',
             'Get age',
             'Get near birthdays',
-            'Search by age(>, <, = N)'
+            'Search by age(>, <, = N)',
+            'Clear records list'
         ]
         self.values = self.funcs
 
@@ -39,6 +40,8 @@ class FuncMenu(npyscreen.MultiLineAction):
             self.display_near_birthdays()
         elif act_on_this == self.funcs[6]:
             self.find_parent_app().switchForm('SEARCHAGE')
+        elif act_on_this == self.funcs[7]:
+            self.clear_records_list()
 
     def display_near_birthdays(self):
         records = self.find_parent_app().book.get_near_birthdays()
@@ -47,6 +50,12 @@ class FuncMenu(npyscreen.MultiLineAction):
             self.find_parent_app().getForm('MAIN').records_list.display()
         else:
             npyscreen.notify_confirm(message=messages.DB_MSG['nf'])
+
+    def clear_records_list(self):
+        answer = notifications.spawn_notify_confirmation("DELETE ALL RECORDS")
+        if answer:
+            self.find_parent_app().book.delete_all()
+            self.find_parent_app().getForm('MAIN').records_list.update_list()
 
 
 class FuncsBox(npyscreen.BoxTitle):
