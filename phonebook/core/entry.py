@@ -63,11 +63,11 @@ def check_all_fields(params):
 
 
 def check_int(value):
-    return int(value) if value.isdigit() else messages.ERROR_MSG['N']
+    return int(value) if value.strip.isdigit() else messages.ERROR_MSG['N']
 
 
 def check_sign(value):
-    return value if len(value) == 1 and value in '<>=' else messages.ERROR_MSG['sign']
+    return value if len(value.strip()) == 1 and value.strip() in '<>=' else messages.ERROR_MSG['sign']
 
 
 def less_more_equal(value, n, sign):
