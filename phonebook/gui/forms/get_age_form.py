@@ -16,7 +16,7 @@ class GetAgeForm(deletion_key_form.DeletionKeyForm):
         else:
             if result[0][-1]:
                 age = entry.calc_age(result[0][-1])
-                npyscreen.notify_confirm(message="{} {}'s age - {}".format(name, surname, age), title="")
+                npyscreen.notify_confirm(message="{} {} age - {}".format(name, surname, age), title="")
                 self.func_res_msg = messages.ACTION_RES_MSG['ok']
             else:
                 self.func_res_msg = messages.ERROR_MSG['empty']
