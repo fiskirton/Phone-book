@@ -7,6 +7,7 @@ class HelpLine(npyscreen.FixedText):
         self.value = ", ".join(['TAB, Arrows - navigation',
                                 'Q - exit',
                                 'd - delete selected record',
+                                'e - edit selected record',
                                 'C - restore records list'
                                 ])
         self.name = 'Help:'
