@@ -2,3 +2,5 @@ env
 .vscode
 phonebook/data
 .idea
+__pycache__
+*.pyc
