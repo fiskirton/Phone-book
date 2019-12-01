@@ -52,5 +52,5 @@ python phonebook.py
 they will be displayed on the screen)
 * `Get age` - get the age of a person by name and surname
 * `Get near birthdays` - get a list of nearby birthday
-* `Search by age(>, <, = N)' - find people whose age is less than, greater than or equal to a given N
+* `Search by age(>, <, = N)` - find people whose age is less than, greater than or equal to a given N
 * `Clear records list` - delete all records
