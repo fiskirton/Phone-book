@@ -152,9 +152,12 @@ class RecordsManager:
             cursor.execute('SELECT '
                            'Name, Surname, Phone, strftime("%d-%m-%Y",Birthday) '
                            'FROM records '
-                           'WHERE strftime("%m-%d", Birthday) '
-                           'BETWEEN strftime("%m-%d", "now") '
-                           'AND strftime("%m-%d", "now", "+30 day") '
+                           'WHERE '
+                           'strftime("%Y-", "now") || strftime("%m-%d", Birthday) '
+                           'BETWEEN date("now","localtime") AND date("now","localtime", "+30 days") '
+                           'or '
+                           'strftime("%Y-", "now", "+1 year")||strftime("%m-%d", Birthday) '
+                           'BETWEEN date("now","localtime") AND date("now", "localtime", "+30 days") '
                            'ORDER BY Name, Surname')
         except sqlite3.DatabaseError:
             db_message = messages.DB_MSG['fail']
